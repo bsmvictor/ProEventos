@@ -25,15 +25,21 @@ using System;
  
          public IConfiguration Configuration { get; }
  
-         // This method gets called by the runtime. Use this method to add services to the container.
+         
          public void ConfigureServices(IServiceCollection services)
          {
+            // Adiciona o DataContext ao container de injeção de dependência
              services.AddDbContext<DataContext>(
+
+                // Configura o DataContext para usar o SQLite como banco de dados
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
              );
 
              services.AddControllers();
-             
+
+            // Adiciona o CORS ao container de injeção de dependência
+             services.AddCors();
+
              services.AddSwaggerGen(c =>
              {
                  c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });
@@ -55,6 +61,12 @@ using System;
              app.UseRouting();
  
              app.UseAuthorization();
+
+            // Habilita o CORS
+             app.UseCors(access => access.AllowAnyHeader()
+                .AllowAnyMethod() // Permite qualquer método
+                .AllowAnyOrigin() // Permite qualquer origem
+             );
  
              app.UseEndpoints(endpoints =>
              {
