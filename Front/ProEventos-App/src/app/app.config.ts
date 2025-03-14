@@ -5,8 +5,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch()), // recomendado com SSR
-    provideAnimations() // Adiciona suporte a animações
+    provideHttpClient(withFetch()), // Recomendado para SSR
+    provideAnimations(),            // Resolve problemas com animações
   ]
 };
+
 
