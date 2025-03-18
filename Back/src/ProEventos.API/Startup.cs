@@ -1,20 +1,11 @@
-using System;
- using System.Collections.Generic;
- using System.Linq;
- using System.Threading.Tasks;
- using Microsoft.AspNetCore.Builder;
- using Microsoft.AspNetCore.Hosting;
- using Microsoft.AspNetCore.HttpsPolicy;
- using Microsoft.AspNetCore.Mvc;
- using Microsoft.EntityFrameworkCore;
- using Microsoft.Extensions.Configuration;
- using Microsoft.Extensions.DependencyInjection;
- using Microsoft.Extensions.Hosting;
- using Microsoft.Extensions.Logging;
- using Microsoft.OpenApi.Models;
- using ProEventos.API.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using ProEventos.Application;
+using ProEventos.Application.Contratos;
+using ProEventos.Persistence;
+using ProEventos.Persistence.Contratos;
 
- namespace ProEventos.API
+namespace ProEventos.API
  {
      public class Startup
      {
@@ -29,13 +20,20 @@ using System;
          public void ConfigureServices(IServiceCollection services)
          {
             // Adiciona o DataContext ao container de injeção de dependência
-             services.AddDbContext<DataContext>(
+             services.AddDbContext<ProEventosContext>(
 
                 // Configura o DataContext para usar o SQLite como banco de dados
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
              );
 
-             services.AddControllers();
+             services.AddControllers()
+                 .AddNewtonsoftJson(
+                     opt => opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                 );
+
+             services.AddScoped<IEventoService, EventoService>();
+             services.AddScoped<IGeralPersist, GeralPersist>();
+             services.AddScoped<IEventosPersist, EventoPersist>();
 
             // Adiciona o CORS ao container de injeção de dependência
              services.AddCors();
