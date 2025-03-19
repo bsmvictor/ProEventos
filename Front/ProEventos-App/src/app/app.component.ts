@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { EventosComponent } from "./eventos/eventos.component";
-import { PalestrantesComponent } from "./palestrantes/palestrantes.component";
-import { NavComponent } from "./nav/nav.component";
+import { EventosComponent } from "./components/eventos/eventos.component";
+import { PalestrantesComponent } from "./components/palestrantes/palestrantes.component";
+import { NavComponent } from "./shared/nav/nav.component";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ContatosComponent } from "./components/contatos/contatos.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { PerfilComponent } from "./components/perfil/perfil.component";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +15,11 @@ import { NavComponent } from "./nav/nav.component";
     RouterOutlet,
     EventosComponent,
     PalestrantesComponent,
-    NavComponent
+    NavComponent,
+    NgxSpinnerModule,
+    ContatosComponent,
+    DashboardComponent,
+    PerfilComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
