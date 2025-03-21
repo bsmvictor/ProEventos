@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { TituloComponent } from '../../shared/titulo/titulo.component';
+import { TituloComponent } from '../../../shared/titulo/titulo.component';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-perfil',
   standalone : true,
-  imports: [TituloComponent],
+  imports: [TituloComponent, CommonModule],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss']
 })

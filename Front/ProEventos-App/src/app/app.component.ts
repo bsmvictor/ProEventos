@@ -6,7 +6,8 @@ import { NavComponent } from "./shared/nav/nav.component";
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ContatosComponent } from "./components/contatos/contatos.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
-import { PerfilComponent } from "./components/perfil/perfil.component";
+import { PerfilComponent } from "./components/user/perfil/perfil.component";
+import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ import { PerfilComponent } from "./components/perfil/perfil.component";
     NgxSpinnerModule,
     ContatosComponent,
     DashboardComponent,
-    PerfilComponent
+    PerfilComponent,
+    EventoListaComponent,
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

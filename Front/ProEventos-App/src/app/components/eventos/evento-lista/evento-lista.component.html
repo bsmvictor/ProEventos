@@ -1,0 +1,94 @@
+<!-- Card contendo a área de busca e a tabela -->
+<div class="card rounded shadow-sm p-3">
+
+  <!-- Contêiner flexível para a barra de pesquisa e o botão -->
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <!-- Área de busca ocupando toda a largura disponível -->
+    <div class="flex-grow-1">
+      <div class="form-floating">
+        <input type="text" class="form-control" placeholder="Buscar Evento:" [(ngModel)]="filtroDeEventos">
+        <label>Buscar Evento:</label>
+      </div>
+    </div>
+
+    <!-- Botão para adicionar novo evento -->
+    <div>
+      <a class="btn btn-outline-primary d-flex align-items-center" routerLink="/eventos/detalhe">
+        <i class="fa-solid fa-circle-plus me-1"></i>
+        <b class="d-none d-sm-block">Novo Evento</b>
+      </a>
+    </div>
+  </div>
+
+  <!-- Tabela responsiva para eventos -->
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <!-- Cabeçalho da tabela -->
+      <thead class="table-dark">
+        <tr>
+          <th class="d-none d-md-table-cell">
+            <!-- Botão para exibir ou ocultar imagens -->
+            <button type="button" class="btn btn-outline-light" (click)="toggleImage()">
+              {{ showImage ? 'Ocultar' : 'Exibir' }}
+            </button>
+          </th>
+          <th>#</th>
+          <th>Tema</th>
+          <th class="d-none d-md-table-cell">Local</th>
+          <th>Data</th>
+          <th class="d-none d-md-table-cell">Qtd Pessoas</th>
+          <th class="d-none d-md-table-cell">Lote</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+
+      <!-- Corpo da tabela, exibido apenas se houver eventos -->
+      <tbody *ngIf="eventos && eventos.length > 0">
+        <tr *ngFor="let evento of eventosFiltrados" (click)="detalheEvento(evento.id)" style="cursor: pointer;">
+          <td class="fixed-img-cell d-none d-md-table-cell">
+            <!-- Exibição da imagem do evento -->
+            <img *ngIf="showImage" src="{{evento.imagemURL}}" width="145" class="d-block mx-auto rounded">
+          </td>
+          <td class="align-middle">{{ evento.id }}</td>
+          <td class="align-middle">{{ evento.tema }}</td>
+          <td class="align-middle d-none d-md-table-cell">{{ evento.local }}</td>
+          <td class="align-middle">{{ evento.dataEvento | DateTimeFormat }}</td>
+          <td class="align-middle d-none d-md-table-cell">{{ evento.qtdPessoas }}</td>
+          <td class="align-middle d-none d-md-table-cell">{{ evento.lotes[0].nome }}</td>
+          <td class="align-middle text-center">
+            <!-- Botão de remoção -->
+            <button type="button" class="btn btn-danger m-1" (click)="openModal(template)" title="Deletar">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+      <!-- Rodapé da tabela exibido caso não haja eventos -->
+      <tfoot *ngIf="!eventos.length">
+        <tr>
+          <td colspan="8" class="text-center">
+            <h4>Nenhum evento encontrado</h4>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Modal de confirmação para deletar um evento -->
+  <ng-template #template>
+    <div class="modal fade show d-block" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <p>Deletar evento?</p>
+            <div class="d-flex justify-content-center gap-2">
+              <button type="button" class="btn btn-danger" (click)="confirm()">Sim</button>
+              <button type="button" class="btn btn-secondary" (click)="decline()">Não</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
