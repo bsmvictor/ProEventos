@@ -34,4 +34,8 @@ export class PerfilComponent implements OnInit {
     }, ValidatorField.MustMatch('senha', 'confirmarSenha'));
   }
 
+  public resetForm(event: Event): void {
+    event.preventDefault();
+    this.form.reset();
+  }
 }

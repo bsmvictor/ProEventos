@@ -27,6 +27,7 @@ export class RegistrationComponent {
       usuario: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]),
       senha: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
       confirmarSenha: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      termos: new FormControl('', Validators.requiredTrue),
     }, ValidatorField.MustMatch('senha', 'confirmarSenha'));
   }
 }

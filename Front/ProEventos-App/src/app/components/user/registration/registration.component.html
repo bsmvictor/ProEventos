@@ -81,14 +81,16 @@
         </div>
 
         <div class="form-check mb-3">
-          <input type="checkbox" class="form-check-input" id="customCheck1">
+          <input type="checkbox" class="form-check-input" id="customCheck1"
+            [ngClass]="{'is-invalid': form.get('termos')?.errors && form.get('termos')?.touched}"
+            formControlName="termos">
           <label class="form-check-label" for="customCheck1">
             Eu concordo com os <a href="#">Termos de Uso</a>.
           </label>
         </div>
 
         <div class="d-grid">
-          <button class="btn btn-lg btn-success w-100">
+          <button class="btn btn-lg btn-success w-100" [disabled]="form.invalid">
             Registrar
           </button>
         </div>
