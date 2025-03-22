@@ -1,6 +1,6 @@
 <app-titulo [titulo]="'Perfil'" [iconclass]="'fa fa-user'"></app-titulo>
 <div class="card rounded shadow-sm">
-  <form>
+  <form [formGroup]="form">
     <div class="row p-3">
       <div class="col-lg-3 pt-1">
         <div class="card mb-3">
@@ -8,7 +8,7 @@
           <div class="d-flex align-self-center pt-3">
             <a>
               <img
-              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+              src="/profile.png"
               name="aboutme" width="120" height="120" class="rounded-circle">
             </a>
           </div>
@@ -58,23 +58,40 @@
           </div>
           <div class="form-group col-sm-5">
             <label>Primeiro Nome</label>
-            <input type="text" class="form-control"/>
+            <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': form.get('primeiroNome')?.errors && form.get('primeiroNome')?.touched}"
+              formControlName="primeiroNome">
+              <div *ngIf="form.get('primeiroNome')?.hasError('required')" class="invalid-feedback">Primeiro Nome obrigatório</div>
+              <div *ngIf="form.get('primeiroNome')?.hasError('minlength')" class="invalid-feedback">Mínimo de 4 caracteres</div>
+              <div *ngIf="form.get('primeiroNome')?.hasError('maxlength')" class="invalid-feedback">Máximo de 50 caracteres</div>
 
           </div>
           <div class="form-group col-sm-5">
             <label>Último nome</label>
-            <input type="text" class="form-control"/>
+            <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': form.get('ultimoNome')?.errors && form.get('ultimoNome')?.touched}"
+              formControlName="ultimoNome">
+              <div *ngIf="form.get('ultimoNome')?.hasError('required')" class="invalid-feedback">Sobrenome obrigatório</div>
+              <div *ngIf="form.get('ultimoNome')?.hasError('minlength')" class="invalid-feedback">Mínimo de 4 caracteres</div>
+              <div *ngIf="form.get('ultimoNome')?.hasError('maxlength')" class="invalid-feedback">Máximo de 50 caracteres</div>
 
           </div>
         </div>
         <div class="row">
           <div class="form-group col-sm-5">
             <label>E-mail</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': form.get('email')?.errors && form.get('email')?.touched}"
+              formControlName="email">
+              <div *ngIf="form.get('email')?.hasError('required')" class="invalid-feedback">E-mail obrigatório</div>
+              <div *ngIf="form.get('email')?.hasError('email')" class="invalid-feedback">E-mail inválido</div>
           </div>
           <div class="form-group col-sm-4">
             <label>Telefone</label>
-            <input type="text" class="form-control" />
+            <input type="tel" class="form-control"
+              [ngClass]="{'is-invalid': form.get('telefone')?.errors && form.get('telefone')?.touched}"
+              formControlName="telefone">
+              <div *ngIf="form.get('telefone')?.hasError('required')" class="invalid-feedback">Telefone obrigatório</div>
           </div>
           <div class="form-group col-sm">
             <label>Função</label>
@@ -86,7 +103,12 @@
           </div>
           <div class="form-group col-12">
             <label>Descrição</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': form.get('descricao')?.errors && form.get('descricao')?.touched}"
+              formControlName="descricao">
+              <div *ngIf="form.get('descricao')?.hasError('required')" class="invalid-feedback">Descrição obrigatória</div>
+              <div *ngIf="form.get('descricao')?.hasError('minlength')" class="invalid-feedback">Mínimo de 4 caracteres</div>
+              <div *ngIf="form.get('descricao')?.hasError('maxlength')" class="invalid-feedback">Máximo de 50 caracteres</div>
           </div>
         </div>
         <div>
@@ -96,24 +118,35 @@
         <div class="row">
           <div class="form-group col-sm">
             <label>Senha</label>
-            <input type="password" class="form-control" />
+            <input type="password" class="form-control"
+              [ngClass]="{'is-invalid': form.get('senha')?.errors && form.get('senha')?.touched}"
+              formControlName="senha">
+              <div *ngIf="form.get('senha')?.hasError('required')" class="invalid-feedback">Senha obrigatória</div>
+              <div *ngIf="form.get('senha')?.hasError('minlength')" class="invalid-feedback">Mínimo de 6 caracteres</div>
+              <div *ngIf="form.get('senha')?.hasError('maxlength')" class="invalid-feedback">Máximo de 50 caracteres</div>
           </div>
           <div class="form-group col-sm">
             <label>Confirmar Senha</label>
-            <input type="password" class="form-control" />
+            <input type="password" class="form-control"
+              [ngClass]="{'is-invalid': form.get('confirmarSenha')?.errors && form.get('confirmarSenha')?.touched}"
+              formControlName="confirmarSenha">
+              <div *ngIf="form.get('confirmarSenha')?.hasError('required')" class="invalid-feedback">Confirmar senha obrigatório</div>
+              <div *ngIf="form.get('confirmarSenha')?.hasError('minlength')" class="invalid-feedback">Mínimo de 6 caracteres</div>
+              <div *ngIf="form.get('confirmarSenha')?.hasError('maxlength')" class="invalid-feedback">Máximo de 50 caracteres</div>
+              <div *ngIf="form.get('confirmarSenha')?.hasError('mustMatch')" class="invalid-feedback">As senhas não coincidem</div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="card-footer">
-      <div class="d-flex justify-content-between">
-        <button class="btn btn-outline-secondary mr-auto border">
-          Cancelar Alteração
-        </button>
-        <button class="btn btn-success">
-          <span class="spinner-border spinner-border-sm mr-1"></span>
-          Salvar Alteração
-        </button>
+        <div class="pt-4">
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-outline-secondary mr-auto border">
+            Cancelar Alteração
+          </button>
+          <button class="btn btn-success">
+            <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+            Salvar Alteração
+          </button>
+        </div>
+        </div>
       </div>
     </div>
   </form>
