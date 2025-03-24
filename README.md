@@ -1,27 +1,88 @@
-# ProEventosApp
+# ProEventos - Sistema de Gerenciamento de Eventos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.14.
+Este é um sistema completo (Full Stack) desenvolvido com .NET 8 no backend e Angular 18 no frontend. A aplicação permite o gerenciamento de eventos, oferecendo funcionalidades como cadastro, edição e exclusão de eventos, além de integração com palestrantes e redes sociais.
 
-## Development server
+## 📦 Tecnologias Utilizadas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Backend
+- .NET 8
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQLite
+- AutoMapper
+- Swagger
+- Injeção de Dependência (DI)
 
-## Code scaffolding
+### Frontend
+- Angular 18
+- TypeScript
+- Bootstrap 5
+- ngx-bootstrap
+- Consumo de API REST
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📁 Estrutura do Projeto
 
-## Build
+```
+ProEventos-main/
+├── Back/
+│   └── src/
+│       ├── ProEventos.API             # Camada de apresentação
+│       ├── ProEventos.Application     # Regras de negócio
+│       ├── ProEventos.Domain          # Entidades do domínio
+│       └── ProEventos.Persistence     # Acesso a dados
+└── Front/
+    └── proeventos-app/                # Aplicação Angular 18
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## ⚙️ Como Executar
 
-## Running unit tests
+### Backend
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Execute as migrations:
 
-## Running end-to-end tests
+```bash
+dotnet ef database update
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. Rode o projeto:
 
-## Further help
+```bash
+dotnet run --project ProEventos.API
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Acesse a documentação Swagger: `https://localhost:5001/swagger`
+
+### Frontend
+
+1. Acesse a pasta do frontend:
+
+```bash
+cd Front/proeventos-app
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Inicie a aplicação:
+
+```bash
+ng serve
+```
+
+Acesse em `http://localhost:4200`
+
+## 🔄 Funcionalidades Principais
+
+- Cadastro de eventos
+- Edição e exclusão de eventos
+- Upload de imagens
+- Associação com palestrantes
+- Gerenciamento de lotes
+- Integração com redes sociais
+
+## 📄 Licença
+
+Projeto educacional de código aberto.
