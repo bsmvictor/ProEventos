@@ -1,4 +1,4 @@
-# ProEventos - Sistema de Gerenciamento de Eventos
+# ProEventos - Sistema de Gerenciamento de Eventos (WIP)
 
 Este é um sistema completo (Full Stack) desenvolvido com .NET 8 no backend e Angular 18 no frontend. A aplicação permite o gerenciamento de eventos, oferecendo funcionalidades como cadastro, edição e exclusão de eventos, além de integração com palestrantes e redes sociais.
 
